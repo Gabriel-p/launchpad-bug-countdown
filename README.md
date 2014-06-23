@@ -1,7 +1,9 @@
 launchpad-bug-countdown
 =======================
 
-Counts the number of bugs left in a launchpad OS site.
+Counts the number of bugs left (*New*, *Incomplete*,
+*Confirmed* and *In progress*) in a
+[Launchpad](https://launchpad.net) site.
 
 Currently being used [~~here~~](http://isisisreleasedyet.com/)
 (**Update**: not named Isis anymore) [here](http://isfreyareleasedyet.com/)
