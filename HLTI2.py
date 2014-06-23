@@ -12,7 +12,7 @@ bug_types = {'span class="statusNEW">': 0,
 # Even though we have to use `open` and `close` and can simply enclose the next
 # for loop with the calls, I still would load the file into a temporary array.
 # Then iterate over that.
-file = urllib.urlopen("https://launchpad.net/elementary/+milestone/isis-beta1")    
+file = urllib.urlopen("https://launchpad.net/elementary/+milestone/freya-beta1")    
 lines = [str(line) for line in file]
 file.close()
 
@@ -36,16 +36,16 @@ for index, line in enumerate(lines):
 # Print to console.
 bugs = sum(bug_types.values())
 if bugs >= 15:
-    message = 'bugs left until Isis. Quit moaning.'
+    message = 'bugs left until Freya beta 1. Quit moaning.'
 elif 10 <= bugs < 15:
-    message = 'bugs left until Isis. Getting there.'
+    message = 'bugs left until Freya beta 1. Getting there.'
 elif 5 <= bugs < 10:
-    message = 'bugs left until Isis. Countdown begins!'
+    message = 'bugs left until Freya beta 1. Countdown begins!'
 elif 1 < bugs < 5:
-    message = 'bugs left until Isis. Soooo close!'
+    message = 'bugs left until Freya beta 1. Soooo close!'
 elif bugs == 1:
-    message = 'bugs left until Isis. JUST ONE MORE TO GO!'
+    message = 'bugs left until Freya beta 1. JUST ONE MORE TO GO!'
 elif bugs == 0:
-    message = 'Isis has landed. You can officially freak out now.'
+    message = 'Freya beta 1 has landed. You can officially freak out now.'
 
 print('\n{} {} \n'.format(bugs, message))

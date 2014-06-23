@@ -4,13 +4,13 @@ import urllib
 import os
 
 """
-Retrieves the number of bugs left until the arrival of elementary OS Isis.
+Retrieves the number of bugs left until the arrival of elementary OS Freya beta 1.
 
 Run via console it with: ./HLTI.py
 """
 
 # Get Launchpad data.
-f = urllib.urlopen("https://launchpad.net/elementary/+milestone/isis-beta1")
+f = urllib.urlopen("https://launchpad.net/elementary/+milestone/freya-beta1")
 s = f.read()
 f.close()
 
@@ -57,14 +57,14 @@ os.remove('temp.del')
 # Print to console.
 bugs = b_new + b_incomp + b_conf + b_inprog
 if bugs >= 15:
-	print '\n%d bugs left until Isis. Quit moaning.\n' % bugs
+	print '\n%d bugs left until Freya beta 1. Quit moaning.\n' % bugs
 elif 10 <= bugs < 15:
-	print '\n%d bugs left until Isis. Getting there.\n' % bugs
+	print '\n%d bugs left until Freya beta 1. Getting there.\n' % bugs
 elif 5 <= bugs < 10:
-	print '\n%d bugs left until Isis. Countdown begins!\n' % bugs
+	print '\n%d bugs left until Freya beta 1. Countdown begins!\n' % bugs
 elif 1 < bugs < 5:
-	print '\n%d bugs left until Isis. Soooo close!\n' % bugs
+	print '\n%d bugs left until Freya beta 1. Soooo close!\n' % bugs
 elif bugs == 1:
-	print '\n%d bugs left until Isis. JUST ONE MORE TO GO!\n' % bugs
+	print '\n%d bugs left until Freya beta 1. JUST ONE MORE TO GO!\n' % bugs
 elif bugs == 0:
-	print 'Isis has landed. You can officially freak out now.\n'
+	print 'elementary OS Freya beta 1 has landed. You can officially freak out now.\n'
