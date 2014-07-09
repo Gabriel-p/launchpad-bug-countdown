@@ -4,13 +4,19 @@ import urllib
 import os
 
 """
-Retrieves the number of bugs left until the arrival of elementary OS Freya beta 1.
+Retrieves the number of bugs left in a Launchpad project.
 
 Run via console it with: ./HLTI.py
 """
 
+# Project's Launchpad ID.
+project = 'freya-beta1'
+# Name of project
+proj_name = 'Freya beta 1'
+
+
 # Get Launchpad data.
-f = urllib.urlopen("https://launchpad.net/elementary/+milestone/freya-beta1")
+f = urllib.urlopen("https://launchpad.net/elementary/+milestone/" + project)
 s = f.read()
 f.close()
 
@@ -21,51 +27,65 @@ ff.close()
 
 # Find number of bugs left.
 temp = open("temp.del", "r")
-b_new, b_incomp, b_conf, b_inprog = 0, 0, 0, 0
+b_new, b_incomp, b_conf, b_triaged, b_inprog = 0, 0, 0, 0, 0
+break_lim = 470
 for i, line in enumerate(temp):
 
-	# New bugs.
-	if 'span class="statusNEW">' in line and i < 450:
-		a = temp.next()
-		b = a.split('<strong>')
-		c = b[1].split('</strong>')
-		b_new = int(c[0])
+	if i < break_lim:
 
-	# Incomplete bugs.
-	if 'span class="statusINCOMPLETE">' in line and i < 450:
-		a = temp.next()
-		b = a.split('<strong>')
-		c = b[1].split('</strong>')
-		b_incomp = int(c[0])
+		# New bugs.
+		if 'span class="statusNEW">' in line:
+			a = temp.next()
+			b = a.split('<strong>')
+			c = b[1].split('</strong>')
+			b_new = int(c[0])
 
-	# Confirmed bugs.
-	if 'span class="statusCONFIRMED">' in line and i < 450:
-		a = temp.next()
-		b = a.split('<strong>')
-		c = b[1].split('</strong>')
-		b_conf = int(c[0])
+		# Incomplete bugs.
+		if 'span class="statusINCOMPLETE">' in line:
+			a = temp.next()
+			b = a.split('<strong>')
+			c = b[1].split('</strong>')
+			b_incomp = int(c[0])
 
-	# In progress bugs.
-	if 'span class="statusINPROGRESS">' in line and i < 450:
-		a = temp.next()
-		b = a.split('<strong>')
-		c = b[1].split('</strong>')
-		b_inprog = int(c[0])
+		# Confirmed bugs.
+		if 'span class="statusCONFIRMED">' in line:
+			a = temp.next()
+			b = a.split('<strong>')
+			c = b[1].split('</strong>')
+			b_conf = int(c[0])
+
+		# Triaged bugs.
+		if 'span class="statusTRIAGED">' in line:
+			a = temp.next()
+			b = a.split('<strong>')
+			c = b[1].split('</strong>')
+			b_triaged = int(c[0])
+
+		# In progress bugs.
+		if 'span class="statusINPROGRESS">' in line:
+			a = temp.next()
+			b = a.split('<strong>')
+			c = b[1].split('</strong>')
+			b_inprog = int(c[0])
+	else:
+		break
 
 # Delete temp file.
 os.remove('temp.del')
 
 # Print to console.
-bugs = b_new + b_incomp + b_conf + b_inprog
+bugs = b_new + b_incomp + b_conf + b_triaged + b_inprog
 if bugs >= 15:
-	print '\n%d bugs left until Freya beta 1. Quit moaning.\n' % bugs
+	message = 'Quit moaning.\n'
 elif 10 <= bugs < 15:
-	print '\n%d bugs left until Freya beta 1. Getting there.\n' % bugs
+	message = 'Getting there.\n'
 elif 5 <= bugs < 10:
-	print '\n%d bugs left until Freya beta 1. Countdown begins!\n' % bugs
+	message = 'Countdown begins!\n'
 elif 1 < bugs < 5:
-	print '\n%d bugs left until Freya beta 1. Soooo close!\n' % bugs
+	message = 'Soooo close!\n'
 elif bugs == 1:
-	print '\n%d bugs left until Freya beta 1. JUST ONE MORE TO GO!\n' % bugs
+	message = 'JUST ONE MORE TO GO!\n'
 elif bugs == 0:
-	print 'elementary OS Freya beta 1 has landed. You can officially freak out now.\n'
+	message = ''
+
+print ('\n%d bugs left until ' + proj_name + '. '  + message) % bugs
