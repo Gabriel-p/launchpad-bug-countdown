@@ -21,6 +21,7 @@ ff.close()
 
 # Find number of bugs left.
 temp = open("temp.del", "r")
+b_new, b_incomp, b_conf, b_inprog = 0, 0, 0, 0
 for i, line in enumerate(temp):
 
 	# New bugs.
