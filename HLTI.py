@@ -10,9 +10,9 @@ Run via console it with: ./HLTI.py
 """
 
 # Project's Launchpad ID.
-project = 'freya-beta1'
+project = 'freya-beta2'
 # Name of project
-proj_name = 'Freya beta 1'
+proj_name = 'Freya beta 2'
 
 
 # Get Launchpad data.
