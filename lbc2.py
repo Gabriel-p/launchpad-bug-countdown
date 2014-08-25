@@ -7,7 +7,7 @@ import re
 """
 Retrieves the number of bugs left in a Launchpad project.
 
-Run via console it with: ./HLTI2.py
+Run via console with: ./lbc2.py
 """
 
 # Project's Launchpad ID.
